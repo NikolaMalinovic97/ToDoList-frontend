@@ -10,7 +10,7 @@ import { TaskHttpService } from '../service/task-http.service';
 export class TaskListComponent implements OnInit {
 
   tasks: Task[];
-  deleteTargetTaskId: number;
+  targetTaskId: number;
 
   constructor(private taskHttpService: TaskHttpService) { }
 
@@ -27,12 +27,16 @@ export class TaskListComponent implements OnInit {
 
   deleteTask() {
     // tslint:disable-next-line:no-unused-expression
-    this.taskHttpService.deleteTask(this.deleteTargetTaskId).subscribe();
-    this.tasks.splice(this.deleteTargetTaskId - 1, 1);
+    this.taskHttpService.deleteTask(this.targetTaskId).subscribe();
+    this.tasks.splice(this.targetTaskId - 1, 1);
   }
 
-  setDeleteTargetTaskId(id: number) {
-    this.deleteTargetTaskId = id + 1;
+  setTargetTaskId(id: number) {
+    this.targetTaskId = id + 1;
   }
 
+  changeCheckedAndUpdate(index: number) {
+    this.tasks[index]['checked'] = !this.tasks[index]['checked'];
+    this.taskHttpService.updateTask(this.tasks[index]).subscribe();
+  }
 }

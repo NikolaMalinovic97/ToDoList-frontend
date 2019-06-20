@@ -20,4 +20,8 @@ export class TaskHttpService {
   deleteTask(id: number): Observable<Object> {
     return this.http.delete(this.url + '/' + id, {headers: this.headers});
   }
+
+  updateTask(task: Task): Observable<Task> {
+    return this.http.put<Task>(this.url, task, {headers: this.headers});
+  }
 }
