@@ -1,0 +1,13 @@
+.checkbox {
+    float: right;
+    cursor: pointer;
+}
+
+.remove {
+    color: red;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    left: 92%;
+    top: 2%;
+}
