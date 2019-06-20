@@ -9,9 +9,8 @@ import { TaskHttpService } from '../service/task-http.service';
 })
 export class TaskListComponent implements OnInit {
 
-  // this is a dummy tasks variable
-  // i will add real tasks from mysql database in later stages via API (httpclient)
   tasks: Task[];
+  deleteTargetTaskId: number;
 
   constructor(private taskHttpService: TaskHttpService) { }
 
@@ -25,4 +24,15 @@ export class TaskListComponent implements OnInit {
         this.tasks = data;
       });
   }
+
+  deleteTask() {
+    // tslint:disable-next-line:no-unused-expression
+    this.taskHttpService.deleteTask(this.deleteTargetTaskId).subscribe();
+    this.tasks.splice(this.deleteTargetTaskId - 1, 1);
+  }
+
+  setDeleteTargetTaskId(id: number) {
+    this.deleteTargetTaskId = id + 1;
+  }
+
 }
