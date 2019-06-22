@@ -17,6 +17,10 @@ export class TaskHttpService {
     return this.http.get<Task[]>(this.url, {headers: this.headers});
   }
 
+  addTask(task: Task): Observable<Task> {
+    return this.http.post<Task>(this.url, task, {headers: this.headers});
+  }
+
   deleteTask(id: number): Observable<Object> {
     return this.http.delete(this.url + '/' + id, {headers: this.headers});
   }

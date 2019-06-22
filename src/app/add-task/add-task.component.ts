@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import {formatDate} from '@angular/common';
 import { Task } from '../model/task.model';
+import { TaskHttpService } from '../service/task-http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-task',
@@ -10,14 +12,15 @@ import { Task } from '../model/task.model';
 })
 export class AddTaskComponent implements OnInit {
 
-  constructor() { }
+  constructor(private taskHttpService: TaskHttpService, private router: Router) { }
 
   ngOnInit() {
   }
 
   onSubmit(form: NgForm) {
     const newTask = this.createTaskOutOfForm(form);
-    // TODO: send http request, for adding new task, to backend
+    this.taskHttpService.addTask(newTask).subscribe();
+    setTimeout(() => this.router.navigate(['/']), 500);
   }
 
   createTaskOutOfForm(form: NgForm) {
