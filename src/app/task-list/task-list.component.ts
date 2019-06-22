@@ -27,7 +27,7 @@ export class TaskListComponent implements OnInit {
 
   deleteTask() {
     // tslint:disable-next-line:no-unused-expression
-    this.taskHttpService.deleteTask(this.targetTaskId).subscribe();
+    this.taskHttpService.deleteTask(this.tasks[this.targetTaskId - 1]['id']).subscribe();
     this.tasks.splice(this.targetTaskId - 1, 1);
   }
 
