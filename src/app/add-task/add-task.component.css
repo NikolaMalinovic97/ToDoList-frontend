@@ -1,0 +1,10 @@
+.h1-wrapper {
+    text-align: center;
+}
+
+.form-wrapper {
+    background-color: #007bff;
+    color: white;
+    padding-bottom: 3%;
+    border-radius: 5%;
+}
