@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-xs-10 col-sm-8 col-md-6 offset-xs-1 offset-sm-2 offset-md-3 mt-5 form-wrapper">
+    <div class="form-group mt-5">
+      <label for="title">Findy Task by Title:</label>
+      <input type="text" id="title" name="title" class="form-control" [(ngModel)]="searchTitle" (keyup)="searchTasks()">
+    </div>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="card-deck">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 col-xl-3 offset-sm-2 offset-md-0" 
+        *ngFor="let task of tasks; let i = index"
+    >
+      <div class="card mt-5 text-white bg-primary" >
+        <div class="card-body">
+          <h2 class="card-title">{{ task.title }}</h2>
+          <i class="material-icons remove" data-toggle="modal" data-target="#deleteTaskModal" (click)="setTargetTaskId(i)">cancel</i>
+          <hr>
+          <h5 class="card-text">{{ task.text }}</h5>
+          <hr>
+          <i *ngIf= "!task.checked" class="material-icons checkbox" (click)="changeCheckedAndUpdate(i)">check_box_outline_blank</i>
+          <i *ngIf= "task.checked" class="material-icons checkbox" (click)="changeCheckedAndUpdate(i)">check_box</i>
+          <p class="card-text">{{ task.dateTime }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

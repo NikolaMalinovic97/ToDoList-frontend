@@ -8,13 +8,15 @@ import { HeaderComponent } from './header/header.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { FormsModule } from '@angular/forms';
+import { FindTaskComponent } from './find-task/find-task.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     TaskListComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    FindTaskComponent
   ],
   imports: [
     BrowserModule,
