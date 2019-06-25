@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../model/task.model';
 import { TaskHttpService } from '../service/task-http.service';
-import { containsTree } from '@angular/router/src/url_tree';
 
 @Component({
   selector: 'app-find-task',
@@ -45,5 +44,10 @@ export class FindTaskComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  changeCheckedAndUpdate(index: number) {
+    this.tasks[index]['checked'] = !this.tasks[index]['checked'];
+    this.taskHttpService.updateTask(this.tasks[index]).subscribe();
   }
 }
