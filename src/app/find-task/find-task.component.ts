@@ -9,12 +9,10 @@ import { TaskHttpService } from '../service/task-http.service';
 })
 export class FindTaskComponent implements OnInit {
 
-  tasks: Task[] = [
-    new Task(1, 'Title1', 'Text1', 'date1', false),
-    new Task(2, 'Title2', 'Text2', 'date2', true)
-  ];
+  tasks: Task[] = [];
 
   searchTitle: string;
+  targetTaskId: number;
 
   constructor(private taskHttpService: TaskHttpService) { }
 
@@ -29,7 +27,6 @@ export class FindTaskComponent implements OnInit {
         // tslint:disable-next-line:prefer-const
         for (let task of data) {
           if (this.searchMatches(task)) {
-            console.log(task);
             this.tasks.push(task);
           }
         }
@@ -44,6 +41,16 @@ export class FindTaskComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  deleteTask() {
+    // tslint:disable-next-line:no-unused-expression
+    this.taskHttpService.deleteTask(this.tasks[this.targetTaskId - 1]['id']).subscribe();
+    this.tasks.splice(this.targetTaskId - 1, 1);
+  }
+
+  setTargetTaskId(id: number) {
+    this.targetTaskId = id + 1;
   }
 
   changeCheckedAndUpdate(index: number) {
